@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,8 @@ namespace BusinessLayer.Concrete
 
         public Destination TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _destinationDal.GetByID(id);
+ 
         }
 
         public List<Destination> TGetList()

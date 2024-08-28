@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240828122321_mig_add_comment")]
+    partial class mig_add_comment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,12 +111,15 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DestinationID")
+                    b.Property<int>("DestinationDestinatonID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DestinatonID")
                         .HasColumnType("int");
 
                     b.HasKey("CommentID");
 
-                    b.HasIndex("DestinationID");
+                    b.HasIndex("DestinationDestinatonID");
 
                     b.ToTable("Comments");
                 });
@@ -371,7 +376,7 @@ namespace DataAccessLayer.Migrations
                 {
                     b.HasOne("EntityLayer.Concrete.Destination", "Destination")
                         .WithMany("Comments")
-                        .HasForeignKey("DestinationID")
+                        .HasForeignKey("DestinationDestinatonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
